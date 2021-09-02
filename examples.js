@@ -80,3 +80,61 @@ console.log('🙂' === '🙂');
 const USER = {'age': 30};
 USER.age = 25;
 console.log(USER.age);
+
+
+//Code 10 :
+
+function Person() { }
+
+Person.prototype.walk = function() {
+  return this;
+}
+
+Person.run = function() {
+  return this;
+}
+
+let user = new Person();
+let walk = user.walk;
+console.log(walk());
+
+let run = Person.run;
+console.log(run());
+
+// Code 10 :
+
+const squareObj = new Square(10);
+console.log(squareObj.area);
+
+class Square {
+  constructor(length) {
+    this.length = length;
+  }
+
+  get area() {
+    return this.length * this.length;
+  }
+
+  set area(value) {
+    this.area = value;
+  }
+}
+
+// const num = 0o38;
+// console.log(num);
+
+
+const myGenerator = (function *(){
+  yield 1;
+  yield 2;
+  yield 3;
+})();
+for (const value of myGenerator) {
+  console.log(value);
+  break;
+}
+
+for (const value of myGenerator) {
+  console.log(value);
+}
+
