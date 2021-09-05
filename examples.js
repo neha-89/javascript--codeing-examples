@@ -246,3 +246,109 @@ printNumbers(1, 2, 3);
 
 const arrowFunc = () => arguments.length;
 console.log(arrowFunc(1, 2, 3));
+
+// Code 24 :
+
+console.log( String.prototype.trimLeft.name === 'trimLeft' );
+console.log( String.prototype.trimLeft.name === 'trimStart' );
+
+// Code 25 :
+
+console.log(Math.max());
+
+// Code 26 :
+
+console.log(10 == [10]);
+console.log(10 == [[[[[[[10]]]]]]]);
+
+// Code 27 :
+
+console.log(10 + '10');
+console.log(10 - '10');
+
+// Code 28 :
+
+console.log([0] == false);
+if([0]) {
+console.log("I'm True");
+} else {
+console.log("I'm False");
+}
+
+// Code 29 :
+
+console.log([1, 2] + [3, 4]);
+
+// Code 30 :
+
+const numbers = new Set([1, 1, 2, 3, 4]);
+console.log(numbers);
+
+const browser = new Set('Firefox');
+console.log(browser);
+
+// Code 31 :
+
+console.log(NaN === NaN);
+
+// Code 32 :
+
+let numbers = [1, 2, 3, 4, NaN];
+console.log(numbers.indexOf(NaN));
+
+// Code 33 :
+
+let [a, ...b,] = [1, 2, 3, 4, 5];
+console.log(a, b);
+
+// Code 34 :
+
+async function func() {
+  return 10;
+}
+console.log(func());
+
+// Code 35:
+
+async function func() {
+  await 10;
+}
+console.log(func());
+
+// Code 36 :
+
+function delay() {
+  return new Promise(resolve => setTimeout(resolve, 2000));
+}
+
+async function delayedLog(item) {
+  await delay();
+  console.log(item);
+}
+
+async function processArray(array) {
+  array.forEach(item => {
+    await delayedLog(item);
+  })
+}
+
+processArray([1, 2, 3, 4]);
+
+// Code 37 :
+
+function delay() {
+  return new Promise(resolve => setTimeout(resolve, 2000));
+}
+
+async function delayedLog(item) {
+  await delay();
+  console.log(item);
+}
+
+async function process(array) {
+  array.forEach(async (item) => {
+    await delayedLog(item);
+  });
+  console.log('Process completed!');
+}
+process([1, 2, 3, 5]);
