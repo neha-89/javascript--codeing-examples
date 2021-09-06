@@ -352,3 +352,46 @@ async function process(array) {
   console.log('Process completed!');
 }
 process([1, 2, 3, 5]);
+
+// Code 38 :
+
+var set = new Set();
+set.add("+0").add("-0").add(NaN).add(undefined).add(NaN);;
+console.log(set);
+
+// Code 39 :
+
+const sym1 = Symbol('one');
+const sym2 = Symbol('one');
+
+const sym3 = Symbol.for('two');
+const sym4 = Symbol.for('two');
+
+cnsooe.log(sym1 === sym2, sym3 === sym4);
+
+// Code 40 :
+
+const sym1 = new Symbol('one');
+console.log(sym1);
+
+// Code 41 :
+
+let myNumber = 100;
+let myString = '100';
+
+if (!typeof myNumber === "string") {
+   console.log("It is not a string!");
+} else {
+    console.log("It is a string!");
+}
+
+if (!typeof myString === "number"){
+   console.log("It is not a number!")
+} else {
+   console.log("It is a number!");
+}
+
+// Code 42 :
+
+console.log(JSON.stringify({ myArray: ['one', undefined, function(){}, Symbol('')] }));
+console.log(JSON.stringify({ [Symbol.for('one')]: 'one' }, [Symbol.for('one')]));
