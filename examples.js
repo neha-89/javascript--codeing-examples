@@ -395,3 +395,40 @@ if (!typeof myString === "number"){
 
 console.log(JSON.stringify({ myArray: ['one', undefined, function(){}, Symbol('')] }));
 console.log(JSON.stringify({ [Symbol.for('one')]: 'one' }, [Symbol.for('one')]));
+
+// Code 43 :
+
+const {a: x = 10, b: y = 20} = {a: 30};
+
+console.log(x);
+console.log(y);
+
+// Code 44 :
+
+function area({length = 10, width = 20}) {
+  console.log(length*width);
+}
+
+area();
+
+// Code 45 :
+
+const props = [
+  { id: 1, name: 'John'},
+  { id: 2, name: 'Jack'},
+  { id: 3, name: 'Tom'}
+];
+
+const [,, { name }] = props;
+console.log(name);
+
+// Code 46 :
+
+function checkType(num = 1) {
+  console.log(typeof num);
+}
+
+checkType();
+checkType(undefined);
+checkType('');
+checkType(null);
