@@ -432,3 +432,29 @@ checkType();
 checkType(undefined);
 checkType('');
 checkType(null);
+
+// Code 47 :
+
+function add(item, items = []) {
+  items.push(item);
+  return items;
+}
+
+console.log(add('Orange'));
+console.log(add('Apple'));
+
+// Code 48 :
+
+function myFun(x, y, ...manyMoreArgs) {
+  console.log(manyMoreArgs)
+}
+
+myFun(1, 2, 3, 4, 5);
+myFun(1, 2);
+
+// Code 49 :
+
+const obj = {'key': 'value'};
+const array = [...obj];
+console.log(array);
+
