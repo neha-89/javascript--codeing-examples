@@ -458,3 +458,72 @@ const obj = {'key': 'value'};
 const array = [...obj];
 console.log(array);
 
+// Code 50 :
+
+function* myGenFunc() {
+  yield 1;
+  yield 2;
+  yield 3;
+}
+var myGenObj = new myGenFunc;
+console.log(myGenObj.next().value);
+
+// Code 51 :
+
+const myGenerator = (function *(){
+  yield 1;
+  yield 2;
+  yield 3;
+})();
+for (const value of myGenerator) {
+  console.log(value);
+  break;
+}
+
+for (const value of myGenerator) {
+  console.log(value);
+}
+
+// Code 52 :
+
+//const num = 0o38;
+console.log(num);
+
+// Code 53 :
+
+const squareObj = new Square(10);
+console.log(squareObj.area);
+
+class Square {
+  constructor(length) {
+    this.length = length;
+  }
+
+  get area() {
+    return this.length * this.length;
+  }
+
+  set area(value) {
+    this.area = value;
+  }
+}
+
+// Code 54 :
+
+function Person() { }
+
+Person.prototype.walk = function() {
+  return this;
+}
+
+Person.run = function() {
+  return this;
+}
+
+let user = new Person();
+let walk = user.walk;
+console.log(walk());
+
+let run = Person.run;
+console.log(run());
+
