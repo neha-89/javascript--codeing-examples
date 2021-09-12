@@ -547,3 +547,12 @@ class Car extends Vehicle {
 
 const car = new Car('BMW');
 console.log(car.start());
+
+// Code 56 :
+
+const USER = {'age': 30};
+USER.age = 25;
+console.log(USER.age);
+
+// Code 57 :
+
