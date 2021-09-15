@@ -14,7 +14,7 @@ function emptyArray(array){
         arr = array.shift();
         
     }
-    console.log(arr);
+   // console.log(arr);
    
 }
 emptyArray([1,2,3,4,5,6]);
@@ -23,24 +23,26 @@ function palindrom(str){
   let res ;
   res= str.split("").reverse().join("");
   if(res==str){
-    console.log(res+"This is a palindrom");
+    //console.log(res+"This is a palindrom");
   }
  else{
-     console.log("This is not a palindrom");
+     //console.log("This is not a palindrom");
  }
 }
 palindrom("ili");
 
 function reverseString(str){
     const res = str.split("").reverse().join("");
-    console.log(res);
+    //console.log(res);
 }
 reverseString("hello");
-
-// function oddEven(array){
-//   for(let i=0;i<=length.array;i++){
-//       if(array[i] % 2 == 0){
-//         array[i].push 
-//       }
-//   } 
-// }
+    
+    let n= 5;
+    let string = "";
+    for(let i= 0;i<n;i++){
+        for(let j= 0 ;j<n;j++ ){
+            string += "*" ;
+        }
+         string += "\n";
+    }
+console.log(string);
