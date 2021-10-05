@@ -323,18 +323,20 @@ console.log(NaN === NaN);
 
 let numbers = [1, 2, 3, 4, NaN];
 console.log(numbers.indexOf(NaN));
+//-1
 
 // Code 33 :
 
 let [a, ...b,] = [1, 2, 3, 4, 5];
 console.log(a, b);
-
+//SyntaxError: Rest element must be last element
 // Code 34 :
 
 async function func() {
   return 10;
 }
 console.log(func());
+//Promise{10}
 
 // Code 35:
 
@@ -342,6 +344,7 @@ async function func() {
   await 10;
 }
 console.log(func());
+//Promise{<pending>}
 
 // Code 36 :
 
@@ -636,6 +639,9 @@ console.log("b defined? " + (typeof b !== 'undefined'));
 // But how can b be defined outside of the scope of the enclosing function? Well, since the statement var a = b = 3; is shorthand for the statements b = 3; and var a = b;, b ends up being a global variable (since it is not preceded by the var keyword) and is therefore still in scope even outside of the enclosing function.
 
 // Note that, in strict mode (i.e., with use strict), the statement var a = b = 3; will generate a runtime error of ReferenceError: b is not defined, thereby avoiding any headfakes/bugs that might othewise result. (Yet another prime example of why you should use use strict as a matter of course in your code!)
+
+
+//Code 59:
 var myObject = {
   foo: "bar",
   func: function() {
@@ -665,6 +671,10 @@ myObject.func();
 
 // (function($) { /* jQuery plugin code referencing $ */ } )(jQuery);
 
+
+
+//Que:60
+
 //What is the significance, and what are the benefits, of including 'use strict' at the beginning of a JavaScript source file?
 // The short and most important answer here is that use strict is a way to voluntarily enforce stricter parsing and error handling on your JavaScript code at runtime. Code errors that would otherwise have been ignored or would have failed silently will now generate errors or throw exceptions. In general, it is a good practice.
 
@@ -678,6 +688,8 @@ myObject.func();
 // Makes eval() safer. There are some differences in the way eval() behaves in strict mode and in non-strict mode. Most significantly, in strict mode, variables and functions declared inside of an eval() statement are not created in the containing scope (they are created in the containing scope in non-strict mode, which can also be a common source of problems).
 // Throws error on invalid usage of delete. The delete operator (used to remove properties from objects) cannot be used on non-configurable properties of the object. Non-strict code will fail silently when an attempt is made to delete a non-configurable property, whereas strict mode will throw an error in such a case.
 
+
+//Code 61:
 function foo1()
 {
   return {
@@ -705,11 +717,210 @@ function foo2()
 
 // This behavior also argues for following the convention of placing an opening curly brace at the end of a line in JavaScript, rather than on the beginning of a new line. As shown here, this becomes more than just a stylistic preference in JavaScript.
 
+//Que:62
 //Write a simple function (less than 160 characters) that returns a boolean indicating whether or not a string is a palindrome.
 function isPalindrome(str) {
   str = str.replace(/\W/g, '').toLowerCase();
   return (str == str.split('').reverse().join(''));
 }
+
+//Code 63
 // Write a sum method which will work properly when invoked using either syntax below.
-console.log(sum(2,3));   // Outputs 5
-console.log(sum(2)(3));  // Outputs 5
+//console.log(sum(2,3));   // Outputs 5
+//console.log(sum(2)(3));  // Outputs 5
+
+
+// METHOD 1
+
+// function sum(x) {
+//   if (arguments.length == 2) {
+//     return arguments[0] + arguments[1];
+//   } else {
+//     return function(y) { return x + y; };
+//   }
+// }
+// In JavaScript, functions provide access to an arguments object which provides access to the actual arguments passed to a function. This enables us to use the length property to determine at runtime the number of arguments passed to the function.
+
+// If two arguments are passed, we simply add them together and return.
+
+// Otherwise, we assume it was called in the form sum(2)(3), so we return an anonymous function that adds together the argument passed to sum() (in this case 2) and the argument passed to the anonymous function (in this case 3).
+
+// METHOD 2
+
+// function sum(x, y) {
+//   if (y !== undefined) {
+//     return x + y;
+//   } else {
+//     return function(y) { return x + y; };
+//   }
+// }
+// When a function is invoked, JavaScript does not require the number of arguments to match the number of arguments in the function definition. If the number of arguments passed exceeds the number of arguments in the function definition, the excess arguments will simply be ignored. On the other hand, if the number of arguments passed is less than the number of arguments in the function definition, the missing arguments will have a value of undefined when referenced within the function. So, in the above example, by simply checking if the 2nd argument is undefined, we can determine which way the function was invoked and proceed accordingly.
+for (var i = 0; i < 5; i++) {
+  var btn = document.createElement('button');
+  btn.appendChild(document.createTextNode('Button ' + i));
+  btn.addEventListener('click', function(){ console.log(i); });
+  document.body.appendChild(btn);
+}
+// a) No matter what button the user clicks the number 5 will always be logged to the console. This is because, at the point that the onclick method is invoked (for any of the buttons), the for loop has already completed and the variable i already has a value of 5. (Bonus points for the interviewee if they know enough to talk about how execution contexts, variable objects, activation objects, and the internal “scope” property contribute to the closure behavior.)
+
+// (b) The key to making this work is to capture the value of i at each pass through the for loop by passing it into a newly created function object. Here are four possible ways to accomplish this:
+
+// for (var i = 0; i < 5; i++) {
+//   var btn = document.createElement('button');
+//   btn.appendChild(document.createTextNode('Button ' + i));
+//   btn.addEventListener('click', (function(i) {
+//     return function() { console.log(i); };
+//   })(i));
+//   document.body.appendChild(btn);
+// }
+// Alternatively, you could wrap the entire call to btn.addEventListener in the new anonymous function:
+
+// for (var i = 0; i < 5; i++) {
+//   var btn = document.createElement('button');
+//   btn.appendChild(document.createTextNode('Button ' + i));
+//   (function (i) {
+//     btn.addEventListener('click', function() { console.log(i); });
+//   })(i);
+//   document.body.appendChild(btn);
+// }
+// Or, we could replace the for loop with a call to the array object’s native forEach method:
+
+// ['a', 'b', 'c', 'd', 'e'].forEach(function (value, i) {
+//   var btn = document.createElement('button');
+//   btn.appendChild(document.createTextNode('Button ' + i));
+//   btn.addEventListener('click', function() { console.log(i); });
+//   document.body.appendChild(btn);
+// });
+// Lastly, the simplest solution, if you’re in an ES6/ES2015 context, is to use let i instead of var i:
+
+// for (let i = 0; i < 5; i++) {
+//   var btn = document.createElement('button');
+//   btn.appendChild(document.createTextNode('Button ' + i));
+//   btn.addEventListener('click', function(){ console.log(i); });
+//   document.body.appendChild(btn);
+// }
+
+var arr1 = "john".split('');
+var arr2 = arr1.reverse();
+var arr3 = "jones".split('');
+arr2.push(arr3);
+console.log("array 1: length=" + arr1.length + " last=" + arr1.slice(-1));
+console.log("array 2: length=" + arr2.length + " last=" + arr2.slice(-1));
+
+console.log(1 +  "2" + "2");//122
+console.log(1 +  +"2" + "2");//32
+console.log(1 +  -"1" + "2");//02
+console.log(+"1" +  "1" + "2");//112
+console.log( "A" - "B" + "2");//NaN2
+console.log( "A" - "B" + 2);//NaN
+//Explanation: Based on order of operations, the first operation to be performed is +"2" (the extra + before the first "2" is treated as a unary operator). Thus, JavaScript converts the type of "2" to numeric and then applies the unary + sign to it (i.e., treats it as a positive number). As a result, the next operation is now 1 + 2 which of course yields 3. But then, we have an operation between a number and a string (i.e., 3 and "2"), so once again JavaScript converts the type of the numeric value to a string and performs string concatenation, yielding "32".
+//Since the - operator can not be applied to strings, and since neither "A" nor "B" can be converted to numeric values, "A" - "B" yields NaN which is then concatenated with the string "2" to yield “NaN2”.
+//The following recursive code will cause a stack overflow if the array list is too large. How can you fix this and still retain the recursive pattern?
+
+var list = readHugeList();
+
+var nextListItem = function() {
+    var item = list.pop();
+
+    if (item) {
+        // process the list item...
+        nextListItem();
+    }
+};
+
+//The potential stack overflow can be avoided by modifying the nextListItem function as follows:
+
+var list = readHugeList();
+
+var nextListItem = function() {
+    var item = list.pop();
+
+    if (item) {
+        // process the list item...
+        setTimeout( nextListItem, 0);
+    }
+};
+// The stack overflow is eliminated because the event loop handles the recursion, 
+//not the call stack. When nextListItem runs, if item is not null, the timeout function (nextListItem) is pushed to the event queue and the function exits,
+// thereby leaving the call stack clear. When the event queue runs its timed-out event, the next item is processed and a timer is set to again invoke nextListItem. Accordingly, the method is processed from start to finish without a direct recursive call, so the call stack remains clear, regardless of the number of iterations.
+
+//A closure is an inner function that has access to the variables in the outer (enclosing) function’s scope chain.
+// The closure has access to variables in three scopes; specifically: (1) variable in its own scope, (2) variables in the enclosing function’s scope, and (3) global variables.
+
+
+
+var globalVar = "xyz";
+
+(function outerFunc(outerArg) {
+    var outerVar = 'a';
+    
+    (function innerFunc(innerArg) {
+    var innerVar = 'b';
+    
+    console.log(
+        "outerArg = " + outerArg + "\n" +
+        "innerArg = " + innerArg + "\n" +
+        "outerVar = " + outerVar + "\n" +
+        "innerVar = " + innerVar + "\n" +
+        "globalVar = " + globalVar);
+    
+    })(456);
+})(123);
+//In the above example, variables from innerFunc, outerFunc, and the global namespace are all in scope in the innerFunc. The above code will therefore produce the following output:
+
+outerArg = 123
+innerArg = 456
+outerVar = a
+innerVar = b
+globalVar = xyz
+
+console.log("0 || 1 = "+(0 || 1));
+console.log("1 || 2 = "+(1 || 2));
+console.log("0 && 1 = "+(0 && 1));
+console.log("1 && 2 = "+(1 && 2));
+
+console.log(false == '0')//true
+console.log(false === '0')//false
+//In JavaScript, there are two sets of equality operators. The triple-equal operator === behaves like any traditional equality operator would: 
+//evaluates to true if the two expressions on either of its sides have the same type and the same value. The double-equal operator, however,
+// tries to coerce the values before comparing them.
+// It is therefore generally good practice to use the === rather than ==. The same holds true for !== vs !=.
+
+var a={},
+    b={key:'b'},
+    c={key:'c'};
+
+a[b]=123;
+a[c]=456;
+
+console.log(a[b]);
+
+console.log((function f(n){return ((n > 1) ? n * f(n-1) : n)})(10));
+// The code will output the value of 10 factorial (i.e., 10!, or 3,628,800).
+
+// Here’s why:
+
+// The named function f() calls itself recursively, until it gets down to calling f(1) which simply returns 1. Here, therefore, is what this does:
+
+// f(1): returns n, which is 1
+// f(2): returns 2 * f(1), which is 2
+// f(3): returns 3 * f(2), which is 6
+// f(4): returns 4 * f(3), which is 24
+// f(5): returns 5 * f(4), which is 120
+// f(6): returns 6 * f(5), which is 720
+// f(7): returns 7 * f(6), which is 5040
+// f(8): returns 8 * f(7), which is 40320
+// f(9): returns 9 * f(8), which is 362880
+// f(10): returns 10 * f(9), which is 3628800
+
+(function(x) {
+  return (function(y) {
+      console.log(x);
+  })(2)
+})(1);
+
+// The output will be 1, even though the value of x is never set in the inner function. Here’s why:
+
+// As explained in our JavaScript Hiring Guide, a closure is a function, along with all variables or functions that were in-scope at the time that the closure was created. In JavaScript, a closure is implemented as an “inner function”; i.e., a function defined within the body of another function. An important feature of closures is that an inner function still has access to the outer function’s variables.
+
+// Therefore, in this example, since x is not defined in the inner function, the scope of the outer function is searched for a defined variable x, which is found to have a value of 1.
