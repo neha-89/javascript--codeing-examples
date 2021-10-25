@@ -1,0 +1,28 @@
+what is the differnce between forEach() map() and filter() ?
+forEach(): The forEach() executes a provided function once on each and every element of an array.
+example:
+arr =[1,2,3,4,5]
+
+arr.forEach((item)=>{
+    console.log(item)
+})
+
+map():The map() executes the provided function on all the elements of the array who passes the and returns a new array without 
+making any change to the original array. 
+example:
+arr.map(arr => arr*2);
+
+filter:The filter() executes the provided function and passes the elements of the array who satisfies the condition by the provided function and returns a 
+new array without making any change to original array.
+example:
+ages =[21,5,21,18,40];
+console.log(ages.filter(checkAges));
+  function checkAges(ages){
+   return ages > 18;
+  }
+ const result = ages.filter(age => age > 18)
+ console.log(result);
+
+The main difference between these methods is that forEach allows you to change elements of original array and returns undefined and map, filter does not 
+allow you to change original array and intended for making new array based on original one.
+

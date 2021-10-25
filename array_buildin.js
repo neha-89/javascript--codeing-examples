@@ -1,23 +1,36 @@
+//reverse():The reverse() method reverses an array in place. The first array element becomes the last, and the last array element becomes the first.
 const array = [1,2,3,4,5];
 
 //console.log(array.reverse());
 
+//push():The push() method adds one or more elements to the end of an array and returns the new length of the array.
 const str = ["a","b","c","d"];
 //console.log(str.push("d"));
 //console.log(str);
 
+//concat():The concat() method is used to merge two or more arrays. This method does not change the existing arrays, but instead returns a new array.
 const arr = [6,7,8,9];
 //console.log(arr.concat(array));
+
+//constructor:
 //console.log(array.constructor);
+
+//copyWithin():The copyWithin() method shallow copies part of an array to another location in the same array and returns it without modifying its length.
 //console.log(str.copyWithin(2));
+
+//entries():The entries() method returns a new Array Iterator object that contains the key/value pairs for each index in the array.
 const f = arr.entries();
 for (x of f){
     //console.log(x);
 }
   const ages = [30,25,16,18,20,];
 
+//every():The every() method tests whether all elements in the array pass the test implemented by the provided function. It returns a Boolean value.
 //  console.log(ages.every(checkAges));
+
+//fill():The fill() method changes all elements in an array to a static value, from a start index (default 0) to an end index (default array.length). It returns the modified array.
 //console.log(array.fill(5,1,4))
+
 //filter() : The filter() method creates a new array with all elements that pass the test implemented by the provided function.
 //   console.log(ages.filter(checkAges));
 //  function checkAges(ages){
@@ -32,11 +45,12 @@ for (x of f){
  //findIndex():The findIndex() method returns the index of the first element in the array that satisfies the provided testing function. Otherwise, it returns -1, indicating that no element passed the test.
  //console.log(ages.findIndex( element => element < 18));
 
- //flat(): The flat() method creates a new array with all sub-array elements conc,atenated into it recursively up to the specified depth.
+ //flat(): The flat() method creates a new array with all sub-array elements concatenated into its recursively up to the specified depth.
  const num = [1,2,3,4,[5,6,7]];
  //console.log(num.flat());
 
  //The flatMap() method returns a new array formed by applying a given callback function to each element of the array, and then flattening the result by one level. It is identical to a map() followed by a flat() of depth 1, but slightly more efficient than calling those two methods separately.
+ 
  //forEach():The forEach() method executes a provided function once for each array element.
  //ages.forEach(age => console.log(age));
 

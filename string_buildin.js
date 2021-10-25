@@ -1,34 +1,49 @@
 //charAt():The String object's charAt() method returns a new string consisting of the single UTF-16 code unit located at the specified offset into the string.
 const str = "cat";
 //console.log(str.charAt(1));
+
 //charCodeAt():The charCodeAt() method returns an integer between 0 and 65535 representing the UTF-16 code unit at the given index.
 //console.log(str.charCodeAt(2));
+
 //codePointAt():The codePointAt() method returns a non-negative integer that is the UTF-16 code point value.
 //console.log(str.codePointAt(1));
+
 //concat():The concat() method concatenates the string arguments to the calling string and returns a new string.
+
 const str1 = "top";
 //console.log(str.concat(',',str1));
+
 //endsWith():The endsWith() method determines whether a string ends with the characters of a specified string, returning true or false as appropriate.
 //console.log(str.endsWith("t"));
+
 //String.fromCharCode():The static String.fromCharCode() method returns a string created from the specified sequence of UTF-16 code units.
 //console.log(String.fromCharCode(189,43,190,61));
+
 //String.fromCodePoint(): The static String.fromCodePoint() method returns a string created by using the specified sequence of code points.
 //console.log(String.fromCodePoint(9731, 9733, 9842, 0x2F804));
+
 //includes:The includes() method performs a case-sensitive search to determine whether one string may be found within another string, returning true or false as appropriate.
 //console.log(str.includes("t"));
+
 const sentence = 'The quick brown fox jumps over the lazy dog.';
 const word = 'fox';
 //console.log(`The word "${word}" ${sentence.includes(word) ? 'is' : 'is not'} in the sentence`);
+
 //indexOf():The indexOf() method returns the index within the calling String object of the first occurrence of the specified value, starting the search at fromIndex. Returns -1 if the value is not found.
 //console.log(str.indexOf("t"));
+
 //lastIndexOf():The lastIndexOf() method returns the index within the calling String object of the last occurrence of the specified value, searching backwards from fromIndex. Returns -1 if the value is not found.
 //console.log(sentence.lastIndexOf("t"));
+
 //localCompare():The localeCompare() method returns a number indicating whether a reference string comes before, or after, or is the same as the given string in sort order.
 //console.log(str.localeCompare(str1 ,  'en', { sensitivity: 'base' }));
+
 //match():The match() method retrieves the result of matching a string against a regular expression.
 const regex = /[A-Z a-z]/g;
 //console.log(sentence.match(regex));
+
 //matchAll():The matchAll() method returns an iterator of all results matching a string against a regular expression, including capturing groups.
+
 const regexp = /t(e)(st(\d?))/g;
 const str2 = 'test1test2';
 const array = [...str2.matchAll(regexp)];

@@ -25,6 +25,18 @@ function func2(){
   
   func2();
   //3 3 3
+//   The code sample shown will not display the values 0, 1, 2, 3, and 4 as might be expected; rather, it will display 5, 5, 5, 5, and 5.
+
+// The reason for this is that each function executed within the loop will be executed after the entire loop has completed and all will therefore reference the last value stored in i, which was 5.
+
+// Closures can be used to prevent this problem by creating a unique scope for each iteration, storing each unique value of the variable within its scope, as follows:
+
+// for (var i = 0; i < 5; i++) {
+//     (function(x) {
+//         setTimeout(function() { console.log(x); }, x * 1000 );
+//     })(i);
+// }
+// This will produce the presumably desired result of logging 0, 1, 2, 3, and 4 to the console.
 
   // Code 3:
 
@@ -50,6 +62,120 @@ function func2(){
     console.log(count);
 })();
 //reference error : count is not defined
+
+(function(a){
+  return (function(){
+    console.log(a);
+    a = 23;
+  })()
+})(45);
+
+//45
+
+function bigFunc(element){
+  let newArray = new Array(700).fill('♥');
+  return newArray[element];
+}
+
+console.log(bigFunc(599)); // Array is created
+console.log(bigFunc(670)); // Array is created again
+//
+
+function randomFunc(){
+  for(var i = 0; i < 2; i++){
+    setTimeout(()=> console.log(i),1000);
+  }
+}
+
+randomFunc();
+//2
+//2
+
+let x= {}, y = {name:"Ronny"},z = {name:"John"};
+
+x[y] = {name:"Vivek"};
+x[z] = {name:"Akki"};
+
+console.log(x[y]);
+//{name:"Akki"}
+//Writing x[y] = {name:”Vivek”} , is same as writing x[‘object Object’] = {name:”Vivek”} ,
+
+//While setting a property of an object, javascript coerces the parameter into a string.
+
+//Therefore, since y is an object, it will be converted to ‘object Object’.
+
+//Both x[y] and x[z] are referencing the same property.
+
+function runFunc(){
+  console.log("1" + 1);//11
+  console.log("A" - 1);//NaN
+  console.log(2 + "-2" + "2");//2-22
+  console.log("Hello" - "World" + 78);//NaN
+  console.log("Hello"+ "78");//Hello78
+}
+
+runFunc();
+
+var x = 23;
+
+(function(){
+  var x = 43;
+  (function random(){
+    x++;
+    console.log(x);//NaN
+    var x = 21;
+  })();
+})();
+
+let hero = {
+  powerLevel: 99,
+  getPower(){
+    return this.powerLevel;
+  }
+}
+
+let getPower = hero.getPower;
+
+let hero2 = {powerLevel:42};
+console.log(getPower());//undefined
+console.log(getPower.apply(hero2));//powerLevel:42
+
+const a = function(){
+  console.log(this);//window
+
+  const b = {
+    func1: function(){
+      console.log(this);
+    }  
+  }
+
+  const c = {
+    func2: ()=>{
+      console.log(this);
+    }
+  }
+
+  b.func1();
+  c.func2();
+}
+
+a();
+
+const b = {
+  name:"Vivek",
+  f: function(){
+    var self = this;
+    console.log(this.name);
+    (function(){
+      console.log(this.name);
+      console.log(self.name);
+    })();
+  }
+}
+
+b.f();
+
+
 //Code 5 :
 
 let msg = "Good morning!!";
@@ -57,6 +183,7 @@ let msg = "Good morning!!";
 msg.name = "John"; 
 
 console.log(msg.name);
+//undefined
 
 // Code 6 :
 
@@ -197,7 +324,6 @@ function Vehicle(model, color, year, country) {
 //vehicle{{ model: 'Honda', color: 'white', year: '2010', country: 'UK' }}
 // Code 15 :
 
-console.log(0.1 + 0.2 === 0.3);
 
 // Code 16 :
 
@@ -259,7 +385,11 @@ console.log(obj.prop3());
 // Code 21 :
 
 console.log(1 < 2 < 3);//true
-console.log(3 > 2 > 1);
+console.log(3 > 2 > 1);//false
+//The second returns false because of how the engine works regarding operator associativity for < and >. It compares left to right, so 3 > 2 > 1 JavaScript translates to true > 1. true has value 1, so it then compares 1 > 1, which is false.
+
+//How do you add an element at the begining of an array? How do you add one at the end?
+
 
 // Code 22 :
 
@@ -389,6 +519,7 @@ process([1, 2, 3, 5]);
 var set = new Set();
 set.add("+0").add("-0").add(NaN).add(undefined).add(NaN);;
 console.log(set);
+//Set(4) { '+0', '-0', NaN, undefined }
 
 // Code 39 :
 
@@ -398,12 +529,15 @@ const sym2 = Symbol('one');
 const sym3 = Symbol.for('two');
 const sym4 = Symbol.for('two');
 
-cnsooe.log(sym1 === sym2, sym3 === sym4);
+console.log(sym1 === sym2, sym3 === sym4);
+//false true
+//Symbol is a built-in object whose constructor returns a symbol primitive — also called a Symbol value or just a Symbol — that’s guaranteed to be unique. Symbols are often used to add unique property keys to an object that won’t collide with keys any other code might add to the object, and which are hidden from any mechanisms other code will typically use to access the object. 
 
 // Code 40 :
 
 const sym1 = new Symbol('one');
 console.log(sym1);
+//TypeError: Symbol is not a constructor
 
 // Code 41 :
 
@@ -421,12 +555,19 @@ if (!typeof myString === "number"){
 } else {
    console.log("It is a number!");
 }
+//it is a string
+//it is a number
+//the conditon in the if block gets fails i.e !typeof number or string is aleways false so condition fails and so else part gets executed.
+
 
 // Code 42 :
 
 console.log(JSON.stringify({ myArray: ['one', undefined, function(){}, Symbol('')] }));
 console.log(JSON.stringify({ [Symbol.for('one')]: 'one' }, [Symbol.for('one')]));
-
+//{"myArray":["one",null,null,null]}
+//{}
+//Symbol.for(key)
+//Searches for existing Symbols with the given key and returns it if found. Otherwise a new Symbol gets created in the global Symbol registry with key.
 // Code 43 :
 
 const {a: x = 10, b: y = 20} = {a: 30};
@@ -441,6 +582,7 @@ function area({length = 10, width = 20}) {
 }
 
 area();
+//TypeError: Cannot read property 'length' of undefined
 
 // Code 45 :
 
@@ -488,6 +630,7 @@ myFun(1, 2);
 const obj = {'key': 'value'};
 const array = [...obj];
 console.log(array);
+//TypeError: object is not iterable (cannot read property Symbol(Symbol.iterator))
 
 // Code 50 :
 
@@ -566,13 +709,13 @@ class Vehicle {
   }
 
   start() {
-    console.log(`${this.name} vehicle started`);
+    console.log(`${this.name} vehicle started`);//undefined
   }
 }
 class Car extends Vehicle {
   start() {
-    console.log(`${this.name} car started`);
-    super.start();
+    console.log(`${this.name} car started`);//BMW car started
+    super.start();//BMW vehicle started
   }
 }
 
@@ -584,7 +727,7 @@ console.log(car.start());
 const USER = {'age': 30};
 USER.age = 25;
 console.log(USER.age);
-
+//25
 // Code 57 :
 
 //What is a potential pitfall with using typeof bar === "object" to determine if bar is an object? How can this pitfall be avoided?
@@ -924,3 +1067,142 @@ console.log((function f(n){return ((n > 1) ? n * f(n-1) : n)})(10));
 // As explained in our JavaScript Hiring Guide, a closure is a function, along with all variables or functions that were in-scope at the time that the closure was created. In JavaScript, a closure is implemented as an “inner function”; i.e., a function defined within the body of another function. An important feature of closures is that an inner function still has access to the outer function’s variables.
 
 // Therefore, in this example, since x is not defined in the inner function, the scope of the outer function is searched for a defined variable x, which is found to have a value of 1.
+
+var hero = {
+  _name: 'John Doe',
+  getSecretIdentity: function (){
+      return this._name;
+  }
+};
+
+var stoleSecretIdentity = hero.getSecretIdentity;
+
+console.log(stoleSecretIdentity());
+console.log(hero.getSecretIdentity());
+
+// Create a function that, given a DOM Element on the page, will visit the element itself and all of its descendents (not just its immediate children). For each element visited, the function should pass that element to a provided callback function.
+
+// The arguments to the function should be:
+
+// a DOM element
+// a callback function (that takes a DOM element as its argument)
+
+var length = 10;
+function fn() {
+	console.log(this.length);
+}
+
+var obj = {
+  length: 5,
+  method: function(fn) {
+    fn();
+    arguments[0]();
+  }
+};
+
+obj.method(fn, 1);
+
+(function () {
+  try {
+      throw new Error();
+  } catch (x) {
+      var x = 1, y = 2;
+      console.log(x);
+  }
+  console.log(x);
+  console.log(y);
+})();
+
+var x = 21;
+var girl = function () {
+    console.log(x);
+    var x = 20;
+};
+girl ();//undefined
+
+// Neither 21, nor 20, the result is undefined
+
+// It’s because JavaScript initialization is not hoisted.
+
+// (Why doesn’t it show the global value of 21? The reason is that when the function is executed, it checks that there’s a local x variable present but doesn’t yet declare it, so it won’t look for global one.)
+for (let i = 0; i < 5; i++) {
+  setTimeout(function() { console.log(i); }, i * 1000 );
+}//0 1 2 3 4
+//It will print 0 1 2 3 4, because we use let instead of var here. The variable i is only seen in the for loop’s block scope.
+var myArray = ['a', 'b', 'c', 'd'];
+myArray.push('end');
+myArray.unshift('start');
+console.log(myArray); // ["start", "a", "b", "c", "d", "end"]
+//With ES6, one can use the spread operator:
+
+myArray = ['start', ...myArray];
+myArray = [...myArray, 'end'];
+//Or, in short:
+
+myArray = ['start', ...myArray, 'end'];
+
+// Imagine you have this code:
+
+var a = [1, 2, 3];
+// a) Will this result in a crash?
+
+ a[10] = 99;
+// b) What will this output?
+
+ console.log(a[6]);
+
+
+//What is the value of typeof undefined == typeof NULL?
+//true
+
+console.log(typeof typeof 1);
+//string
+
+//What is NaN? What is its type? How can you reliably test if a value is equal to NaN?
+//The NaN property represents a value that is “not a number”. This special value results from an operation that could not be performed either because one of the operands was non-numeric (e.g., "abc" / 4), or because the result of the operation is non-numeric.
+
+// While this seems straightforward enough, there are a couple of somewhat surprising characteristics of NaN that can result in hair-pulling bugs if one is not aware of them.
+
+// For one thing, although NaN means “not a number”, its type is, believe it or not, Number:
+
+// console.log(typeof NaN === "number");  // logs "true"
+// Additionally, NaN compared to anything – even itself! – is false:
+
+// console.log(NaN === NaN);  // logs "false"
+// A semi-reliable way to test whether a number is equal to NaN is with the built-in function isNaN(), but even using isNaN() is an imperfect solution.
+
+// A better solution would either be to use value !== value, which would only produce true if the value is equal to NaN. Also, ES6 offers a new Number.isNaN() function, which is a different and more reliable than the old global isNaN() function.
+
+var b = 1;
+function outer(){
+   	var b = 2
+    function inner(){
+        b++;
+        var b = 3;
+        console.log(b)
+    }
+    inner();
+}
+outer();
+//Discuss possible ways to write a function isInteger(x) that determines if x is an integer.
+//How do you clone an object?
+var obj = {a: 1 ,b: 2}
+var objclone = Object.assign({},obj);
+//Now the value of objclone is {a: 1 ,b: 2} but points to a different object than obj.
+
+//Note the potential pitfall, though: Object.assign() will just do a shallow copy, not a deep copy. This means that nested objects aren’t copied. They still refer to the same nested objects as the original:
+
+let obj = {
+    a: 1,
+    b: 2,
+    c: {
+        age: 30
+    }
+};
+
+var objclone = Object.assign({},obj);
+console.log('objclone: ', objclone);
+
+obj.c.age = 45;
+console.log('After Change - obj: ', obj);           // 45 - This also changes
+console.log('After Change - objclone: ', objclone); // 45

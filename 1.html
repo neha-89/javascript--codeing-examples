@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Input text</title>
+    <meta charset="UTF-8" />
+  </head>
+
+  <body>
+    <input id="mySearchField" name="search" placeholder="Search.." type="text">
+
+    <button id="mySearchButton">Search</button>
+    <div id="myContentArea"></div>
+    
+    
+    <script>
+    
+           $(function() {
+            var _myContentArea = document.getElementById("myContentArea");
+            var _mySearchButton = document.getElementById("mySearchButton");
+            _mySearchButton.onclick = getData;
+    
+            function getData(){
+            var _mySearchField = document.getElementById("mySearchField");
+                $.ajax({
+                url: "https://api.domainsdb.info/v1/domains/search?limit=50"+_mySearchField.value,
+               method: "GET",
+                dataType: "json",
+                success: function(data) {
+                    var str = "";          
+                   console.log(data);
+                   if(data.length === 3){
+                     str = "";
+                   }
+                   _myContentArea.innerHTML = str;
+                }
+                });
+            }
+    
+        });
+        </script>
+    <!-- <form class="app">
+      <input
+        type="text"
+        id="name"
+        placeholder="Enter text"
+        onChange="inputChange(event)"
+        onKeyUp="inputChange(event)"
+      />
+      <button>Submit</button>
+    </form>
+
+    <script type="text/javascript">
+      function inputChange(e) {
+        console.log(document.getElementById("name").value);
+      } 
+    </script>-->
+  </body>
+</html>
+
