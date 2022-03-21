@@ -1206,3 +1206,139 @@ console.log('objclone: ', objclone);
 obj.c.age = 45;
 console.log('After Change - obj: ', obj);           // 45 - This also changes
 console.log('After Change - objclone: ', objclone); // 45
+
+ var functionfun = (function(a) {
+ delete a;
+ return a;
+ })(0);
+ 
+ console.log(functionfun);
+
+ var num1= 15, num2=1
+ var obj = { a: 20 }
+ with(obj) {
+ alert(num2)
+ }
+//1
+ +true;
+ !'CutShort';
+//false
+const myPromise = new Promise((resolve, reject)=>{
+ resolve(1);
+ });
+ myPromise.then((a)=> {
+ return promise2;
+ }).then((a)=> {
+ return promise3;
+ }).then((a)=>{
+ console.log(a);
+ });
+ const promise2 = new Promise((resolve, reject)=>{
+ resolve(2);
+ });
+ const promise3 = new Promise((resolve, reject)=>{
+ resolve(3);
+ });
+// 3
+
+var number1 = 20;
+ let number2 = 30;
+ const number3 = 100;
+ 
+ if (number1 >= 20){
+ var number1 = 30;
+ let number2 = 20;
+ const number3 = 30;
+ }
+ 
+ console.log(number3);
+ console.log(number1);
+ console.log(number2);
+
+//  100
+//  30
+//  30
+
+ const months = ['Jan','Feb','Mar','April','May','June','July','Aug','Sept','Oct','Nov','Dec']
+ 
+ months.forEach(function(monthName, index){
+ console.log(`Month ${index} : ${monthName}`)
+ })
+//  Month 0 : Jan
+//  Month 1 : Feb
+// Month 2 : Mar
+//  Month 3 : April
+//  Month 4 : May
+// Month 5 : June
+//  Month 6 : July
+// Month 7 : Aug
+//  Month 8 : Sept
+//  Month 9 : Oct
+//  Month 10 : Nov
+//  Month 11 : Dec
+
+ var name = 'Sam';
+ var person = { 
+ name: 'Tom',
+ getName: ()=> {
+ console.log(this.name);
+ }
+ };
+ var printName = person.getName;
+ printName();
+
+ //Sam
+
+ for (let i = 1; i <= 6; i++){
+ let f = i % 2 == 0, b = i % 3 == 0;
+ console.log(f ? (b ? '23' : '2') : b ? '3' : 'x');
+ }
+//  x
+// 2
+//  3
+//  2
+// x
+// 23
+
+
+let c = { greeting: 'Hey!' };
+ let d;
+ 
+ d = c;
+ c.greeting = 'Hello';
+ console.log(d.greeting);
+ //Hello
+
+ let arr = [1, 2, 5];
+ 
+ arr.splice(-1, 0, 3, 4);
+ 
+ console.log(arr);
+ //[1, 2, 3, 4, 5]
+
+ (function test() {
+ console.log(
+ Function === Object.constructor,
+ Function === Number.constructor,
+ Function === Function.constructor,
+ Function === Window.constructor,
+ Object === Object.prototype.constructor,
+ Number === Number.prototype.constructor,
+ Array === Array.prototype.constructor,
+ Window === Window.prototype.constructor
+ );
+
+ })();
+
+ //true true true true true true true true
+
+ console.log(
+ Function instanceof Function,
+ Function.prototype instanceof Function,
+ Function.prototype.isPrototypeOf(Function),
+ Function === Function.prototype,
+ Function === Function.prototype.constructor,
+ typeof Function.prototype,
+ typeof Function
+ )
+  //true false true false true "function" "function"
