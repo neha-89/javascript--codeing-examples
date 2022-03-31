@@ -1342,3 +1342,17 @@ let c = { greeting: 'Hey!' };
  typeof Function
  )
   //true false true false true "function" "function"
+//Exercise:
+//1. Declare an _empty_ array;
+var arr = Array();
+// 2. Declare an array with more than 5 number of elements
+var arr1 = Array(6);
+var arr1 = [1,2,3,4,5,6,7];
+// 3. Find the length of your array
+arr1.length;
+// 4. Get the first item, the middle item and the last item of the array
+var last = arr1.pop();
+var first = arr1.shift();
+var item =ceil(arr1.length/2);
+var middleitem = indexOf(item);
+var middle = slice(0,middleitem),
