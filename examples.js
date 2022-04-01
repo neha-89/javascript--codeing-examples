@@ -1353,6 +1353,62 @@ arr1.length;
 // 4. Get the first item, the middle item and the last item of the array
 var last = arr1.pop();
 var first = arr1.shift();
-var item =ceil(arr1.length/2);
-var middleitem = indexOf(item);
-var middle = slice(0,middleitem),
+function middle(i) {
+  if (array[i] !== undefined) {
+     return middle(i+1);
+  } else {
+     return array[Math.floor(i / 2)];
+ }
+}
+// 5. Declare an array called _mixedDataTypes_, put different data types in the array and find the length of the array. The array size should  be greater than 5
+var arr2 = [1,2,3,4,"hi","hello","true",true,false];
+arr2.length;
+// 6. Declare an array variable name itCompanies and assign initial values Facebook, Google, Microsoft, Apple, IBM, Oracle and Amazon
+var itCompanies = ["Facebook", "Google", "Microsoft", "Apple", "IBM", "Oracle"," Amazon"];
+// 7. Print the array using _console.log()_
+console.log(itCompanies);
+// 8. Print the number of companies in the array
+for(keys in itCompanies){
+    console.log(keys);
+}
+// 9. Print the first company, middle and last company
+// 10. Print out each company
+for(keys in itCompanies){
+    console.log(itCompanies[keys]);
+}
+// 11. Change each company name  to uppercase one by one and print them out
+for(keys in itCompanies){
+    console.log(itCompanies[keys].toUpperCase());
+  }
+  
+// 12. Print the array like as a sentence: Facebook, Google, Microsoft, Apple, IBM,Oracle and Amazon are big IT companies.
+var str = itCompanies.toString();
+console.log(`${str} are big IT companies`);
+// 13. Check if a certain company exists in the itCompanies array. If it exist return the company else return a company is _not found_
+for(let i= 0;i<=itCompanies.length;i++){
+    if(itCompanies[i] === -1){
+        console.log("the company donot exist")
+    }
+    else{
+        return itCompanies;
+    }
+}
+// 14. Filter out companies which have more than one 'o' without the filter method
+// 15. Sort the array using _sort()_ method
+console.log(itCompanies.sort());
+// 16. Reverse the array using _reverse()_ method
+console.log(itCompanies.reverse());
+// 17. Slice out the first 3 companies from the array
+console.log(itCompanies.slice(0,3));
+// 18. Slice out the last 3 companies from the array
+console.log(itCompanies.slice(-3))
+// 19. Slice out the middle IT company or companies from the array
+console.log(itCompanies.slice(2,5))
+// 20. Remove the first IT company from the array
+console.log(itCompanies.shift());
+// 21. Remove the middle IT company or companies from the array
+console.log(itCompanies.splice(0,3))
+// 22. Remove the last IT company from the array
+console.log(itCompanies.pop());
+// 23. Remove all IT companies
+console.log(itCompanies.slice(0,-7));
