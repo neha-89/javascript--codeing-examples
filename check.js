@@ -138,148 +138,28 @@ function simpleArraySum(ages) {
 
 
 
-// 1. Using console.log() print out the following statement:
-
-//     ```sh
-//     The quote 'There is no exercise better for the heart than reaching down and lifting people up.' by John Holmes teaches us to help one another.
-//     ```
-
-let str1 = 'There is no exercise better for the heart than reaching down and lifting people up.'
-console.log(`${str1}by John Holmes teaches us to help one another.`)
-
-// 2. Using console.log() print out the following quote by Mother Teresa:
-
-//     ```sh
-//     "Love is not patronizing and charity isn't about pity, it is about love. Charity and love are the same -- with charity you give love, so don't just give money but reach out your hand instead."
-// 3. Check if typeof '10' is exactly equal to 10. If not make it exactly equal.
-let str2 = '10'
-let no = Number('10');
-console.log(typeof(no)) ;
-console.log(typeof(10));
-// 4. Check if parseFloat('9.8') is equal to 10 if not make it exactly equal with 10.
-let str3 = parseFloat('9.8');
-console.log(typeof(str3));
-// 5. Check if 'on' is found in both python and jargon
-let word = "python";
-let word2 = "jargon";
-console.log(word.includes("on"));
-console.log(word2.includes("on"))
-
-// 6. _I hope this course is not full of jargon_. Check if _jargon_ is in the sentence.
-let word1 = "I hope this course is not full of jargon";
-console.log(word1.includes("jargon"))
-// 7. Generate a random number between 0 and 100 inclusively.
-console.log(Math.floor(Math.random(0)*100));
-// 8. Generate a random number between 50 and 100 inclusively.
-console.log(Math.floor(Math.random()*(100-50+1))+50);
-// 9. Generate a random number between 0 and 255 inclusively.
-console.log(Math.floor(Math.random(0)*255));
-// 10. Access the 'JavaScript' string characters using a random number.
-let challenge = "30 Days of JavaScript";
-
-// 11. Use console.log() and escape characters to print the following pattern.
-
-//     ```js
-//     1 1 1 1 1
-//     2 1 2 4 8
-//     3 1 3 9 27
-//     4 1 4 16 64
-//     5 1 5 25 125
-
-// 12.  Use __substr__ to slice out the phrase __because because because__ from 
-//the following sentence:__'You cannot end a sentence with because because because is a conjunction'__
-let str = "You cannot end a sentence with because because because is a conjunction."
-//console.log(str.indexOf("because"));
-//let strf = str.firstIndexOf("because");
-// console.log(strf);
-// let stre = str.lastIndexOf("because");
-// console.log(substr(strf,stre));
-//console.log(str.substr());
-console.log(str.match(/because/g).toString());
-// ### Exercises: Level 3
-
-// 1. 'Love is the best thing in this world. Some found their love and some are still looking for their love.' Count the number of word __love__ in this sentence.
-let stt = "Love is the best thing in this world. Some found their love and some are still looking for their love."
-console.log(stt.match(/love/gi));
-// 2. Use __match()__ to count the number of all __because__ in the following sentence:__'You cannot end a sentence with because because because is a conjunction'__
-// 3. Clean the following text and find the most frequent word (hint, use replace and regular expressions).
-
-//     ```js
-//         const sentence = '%I $am@% a %tea@cher%, &and& I lo%#ve %te@a@ching%;. The@re $is no@th@ing; &as& mo@re rewarding as educa@ting &and& @emp%o@weri@ng peo@ple. ;I found tea@ching m%o@re interesting tha@n any ot#her %jo@bs. %Do@es thi%s mo@tiv#ate yo@u to be a tea@cher!? %Th#is 30#Days&OfJavaScript &is al@so $the $resu@lt of &love& of tea&ching'
-//     ```
-
-// 4. Calculate the total annual income of the person by extracting the numbers from the following text. 'He earns 5000 euro from salary per month, 10000 euro annual bonus, 15000 euro online courses per month.
 
 
-// 1. Declare firstName, lastName, country, city, age, isMarried, year variable and assign value to it and use the typeof operator to check different data types.
-// const firstName = "Neha",
-// const lastName = "Sontakke",
-// const country = "India",
-// const city = "Pune",
-// age = 33,
-// isMarried = true,
-// 2. Check if type of '10' is equal to 10
-console.log('10' == 10);
-// 3. Check if parseInt('9.8') is equal to 10
-console.log(parseInt(9.8)==10);
-// 4. Boolean value is either true or false.
-//    1. Write three JavaScript statement which provide truthy value.
-let num = 454;
-let num1 = true;
-let num3 = -454;
-//    2. Write three JavaScript statement which provide falsy value.
-//0,null,false
 
-// 5. Figure out the result of the following comparison expression first without using console.log(). After you decide the result confirm it using console.log()
-  //  1. 4 > 3 //true
-  //  2. 4 >= 3//false
-  //  3. 4 < 3//false
-  console.log(4 <= 3);
-  //  4. 4 <= 3//false
-  //  5. 4 == 4 //true
-  //  6. 4 === 4//true
-  //  7. 4 != 4//false
-  //  8. 4 !== 4//false
-  //  9. 4 != '4'//false
-  //  10. 4 == '4'//true
-  //  11. 4 === '4'//false
-//    12. Find the length of python and jargon and make a falsy comparison statement.
 
-// 6. Figure out the result of the following expressions first without using console.log(). After you decide the result confirm it by using console.log()
-//    1. 4 > 3 && 10 < 12//true
-   console.log(!(4 < 3)) //false
-//    3. 4 > 3 || 10 < 12//true
-//    4. 4 > 3 || 10 > 12//true
-//    5. !(4 > 3)//false
-//    6. !(4 < 3)//true
-//    7. !(false)//true
-//    8. !(4 > 3 && 10 < 12)//false
-//    9. !(4 > 3 && 10 > 12)//true
-//    10. !(4 === '4')//true
-//    11. There is no 'on' in both dragon and python
+// 1. Get user input using prompt(“Enter your age:”). If user is 18 or older , give feedback:'You are old enough to drive' but if not 18 give another feedback stating to  wait for the number of years he neds to turn 18.
+function age(num){
+  if(num > 18){
+    console.log("You are old enough to drive");
+  }
+  else{
+    nres = 18 - num;
+    console.log(`wait for the next ${nres} years for you to turn 18`);
+  }
+}
+age(14);
 
-// 7. Use the Date object to do the following activities
-//    1. What is the year today?
-let now = new Date();
-console.log(now.getFullYear());
-//    2. What is the month today as a number?
-console.log(now.getMonth());
-//    3. What is the date today?
-console.log(now.getDate());
-//    4. What is the day today as a number?
-console.log(now.getDay());
-//    5. What is the hours now?
-console.log(now.getHours());
-//    6. What is the minutes now?
-console.log(now.getMinutes());
-//    7. Find out the numbers of seconds elapsed from January 1, 1970 to now.
-console.log(now.getTime(1-1-1970));
-
-// 1. Create a human readable time format using the Date time object
-//    1. YYYY-MM-DD HH:mm
-//    2. DD-MM-YYYY HH:mm
-//    3. DD/MM/YYYY HH:mm
-console.log(now.toLocaleDateString())
-// console.log(date.toLocaleDateString());
-// console.log(date.toDateString());
-// console.log(date.toGMTString());
+function ager(age1,age2){
+ if(age1 > age2){
+   res = age1 - age2;
+   console.log(`you are ${res} years younger then me`);
+ }
+else{
+  
+}
+}
